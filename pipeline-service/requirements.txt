@@ -1,0 +1,6 @@
+fastapi>=0.103.0
+uvicorn>=0.23.2
+requests>=2.31.0
+SQLAlchemy>=2.0.20
+psycopg2-binary>=2.9.7
+dlt>=0.4.0
