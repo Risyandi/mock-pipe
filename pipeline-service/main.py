@@ -7,9 +7,6 @@ from database import engine, Base, get_db
 from models.customer import Customer
 from services.ingestion import run_ingestion_pipeline
 
-# Create tables if they don't exist
-Base.metadata.create_all(bind=engine)
-
 app = FastAPI(title="Pipeline Service")
 
 # Ingest data from mock server to PostgreSQL endpoint

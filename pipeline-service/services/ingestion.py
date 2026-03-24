@@ -2,6 +2,8 @@ import os
 import requests
 import dlt
 
+from datetime import datetime, date
+
 # URL for the Flask mock server
 MOCK_SERVER_URL = os.getenv("MOCK_SERVER_URL", "http://localhost:5000")
 
@@ -21,6 +23,12 @@ def fetch_all_customers():
             if not records:
                 break
             
+            for record in records:
+                if record.get("date_of_birth"):
+                    record["date_of_birth"] = datetime.strptime(record["date_of_birth"], "%Y-%m-%d").date()
+                if record.get("created_at"):
+                    record["created_at"] = datetime.fromisoformat(record["created_at"].replace("Z", "+00:00"))
+            
             customers.extend(records)
             
             # Check pagination metadata to see if we reached the end
@@ -35,7 +43,16 @@ def fetch_all_customers():
             
     return customers
 
-@dlt.resource(name="customers", write_disposition="merge", primary_key="customer_id")
+@dlt.resource(
+    name="customers", 
+    write_disposition="merge", 
+    primary_key="customer_id",
+    columns={
+        "date_of_birth": {"data_type": "date"},
+        "created_at": {"data_type": "timestamp"},
+        "account_balance": {"data_type": "decimal"}
+    }
+)
 def customer_resource(customers_data):
     yield customers_data
 
