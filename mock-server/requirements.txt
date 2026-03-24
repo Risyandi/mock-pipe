@@ -1,0 +1,3 @@
+# uncomments for spesific python version to install
+# Python 3.14.0
+Flask>=3.0.0
