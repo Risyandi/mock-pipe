@@ -12,7 +12,7 @@ This project consists of two main services:
 
 ---
 
-## 🐳 Running with Docker Compose (Recommended)
+## Running with Docker Compose (Recommended)
 
 The easiest way to run the entire stack (Mock Server, Pipeline Service, and PostgreSQL) is using Docker Compose.
 
@@ -28,7 +28,7 @@ The easiest way to run the entire stack (Mock Server, Pipeline Service, and Post
 
 ---
 
-## 🛠️ Running Manually (Without Docker)
+## Running Manually (Without Docker)
 
 You can also run the services individually on your local machine.
 
