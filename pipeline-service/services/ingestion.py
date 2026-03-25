@@ -2,7 +2,7 @@ import os
 import requests
 import dlt
 
-from datetime import datetime, date
+from datetime import datetime
 
 # URL for the Flask mock server
 MOCK_SERVER_URL = os.getenv("MOCK_SERVER_URL", "http://localhost:5000")

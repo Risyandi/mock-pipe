@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
-from database import engine, Base, get_db
+from database import get_db
 from models.customer import Customer
 from services.ingestion import run_ingestion_pipeline
 
