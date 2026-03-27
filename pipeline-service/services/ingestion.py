@@ -15,20 +15,24 @@ def fetch_all_customers():
     
     while True:
         try:
+            # Fetch data from mock server
             response = requests.get(f"{MOCK_SERVER_URL}/api/customers", params={"page": page, "limit": limit})
             response.raise_for_status()
             data = response.json()
             
+            # Get records from response
             records = data.get("data", [])
             if not records:
                 break
             
+            # Transform data types
             for record in records:
                 if record.get("date_of_birth"):
                     record["date_of_birth"] = datetime.strptime(record["date_of_birth"], "%Y-%m-%d").date()
                 if record.get("created_at"):
                     record["created_at"] = datetime.fromisoformat(record["created_at"].replace("Z", "+00:00"))
             
+            # Add records to list
             customers.extend(records)
             
             # Check pagination metadata to see if we reached the end
